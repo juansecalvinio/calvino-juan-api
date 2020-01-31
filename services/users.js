@@ -15,15 +15,20 @@ class UsersService {
         return user;
     }
 
-    async authenticateUser(username, password) {
-        const [ user ] = await this.mongoDB.getAll(
-            this.collection,
-            { username }
-        );
-        if(user.password !== password) {
-            return false;
+    async authenticateUser({ username, password }) {
+        try {
+            const [ user ] = await this.mongoDB.getAll(
+                this.collection,
+                { username }
+            );
+            if(user.password !== password) {
+                return false;
+            }
+            return user;
+        } catch (error) {
+            return new Error(error);
         }
-        return user;
+        
     }
 
     async createUser({ user }) {

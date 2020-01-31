@@ -37,7 +37,7 @@ function meetupsApi(app) {
     })
 
     router.post("/", async function (req, res, next) {
-        const { body: meetup } = req; // { body: meetup } crea un alias 'movie'
+        const { body: meetup } = req; // { body: meetup } crea un alias 'meetup'
         
         try {
             const createdMeetupId = await meetupsServices.createMeetup({ meetup });
