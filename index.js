@@ -14,18 +14,21 @@ const {
 
 const notFoundHandler = require('./utils/middlewares/404Handler.js');
 
+// Indico la url del frontend para permitirle el cruce de datos
+const corsOptions = { origin: "http://localhost:3001" };
+app.use(cors(corsOptions));
+
 // Middleware body parser 
 app.use(express.json());
 
-app.use('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Credentials', true);
-    next();
-});
+// app.use('*', function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     res.header('Access-Control-Allow-Credentials', true);
+//     next();
+// });
 
-app.options('*', cors());
 
 // Routes
 authApi(app);

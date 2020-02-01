@@ -9,7 +9,6 @@ const createMeetupSchema = {
     date: joi.string().required(),
     attendance: joi.number().required(),
     weather: joi.number().required(),
-    beers: joi.number().required(),
     active: joi.boolean().default(1)
 }
 
